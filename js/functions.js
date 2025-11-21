@@ -12,3 +12,5 @@ const getNumberFromString = (str) => {
   str = str.replace(/\D/g, '');
   return str ?  Number(str) : NaN;
 };
+
+export { isValidStringLength, isPalindrome, getNumberFromString };
