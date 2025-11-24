@@ -1,16 +1,24 @@
-const isValidStringLength = (stringLength, maxLength) => stringLength.length <= maxLength;
+const isValidStringLength = (string, maxLength) => string.length <= maxLength;
 
 const isPalindrome = (str) => {
-  str = str.replaceAll(' ', '').toUpperCase();
-  return str === str.split('').reverse().join('');
+  const strTemp = str.replaceAll(' ', '').toUpperCase();
+  let reversed = '';
+  for(let i = strTemp.length - 1; i >= 0; i--) {
+    reversed += strTemp[i];
+  }
+  return strTemp === reversed;
 };
 
 const getNumberFromString = (str) => {
-  if(typeof str === 'number') {
-    str = str.toString();
+  const sourceStr = typeof str === 'number' ? str.toString() : str;
+  let accumulatorNumber = '';
+  for (let i = 0; i < sourceStr.length; i++) {
+    const num = parseInt(sourceStr[i], 10);
+    if (!Number.isNaN(num)) {
+      accumulatorNumber += num;
+    }
   }
-  str = str.replace(/\D/g, '');
-  return str ?  Number(str) : NaN;
+  return accumulatorNumber === '' ? NaN : Number(accumulatorNumber);
 };
 
 export { isValidStringLength, isPalindrome, getNumberFromString };
