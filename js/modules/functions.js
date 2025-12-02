@@ -21,4 +21,22 @@ const getNumberFromString = (str) => {
   return accumulatorNumber === '' ? NaN : Number(accumulatorNumber);
 };
 
-export { isValidStringLength, isPalindrome, getNumberFromString };
+const canScheduleMeeting = ( dayStart , dayEnd, startTime, durationMinutes) => {
+  const toMinutes = (time) => {
+    const [h, m] = time.split(':').map(Number);
+    return h * 60 + m;
+  };
+
+  const totalMinutesStartMeeting = toMinutes(startTime);
+  const totalMinutesEndMeeting = toMinutes(startTime) + durationMinutes;
+
+  const totalMinutesStart = toMinutes(dayStart);
+  const totalMinutesEnd = toMinutes(dayEnd);
+
+  return (
+    totalMinutesStartMeeting >= totalMinutesStart &&
+    totalMinutesEndMeeting <= totalMinutesEnd
+  );
+};
+
+export { isValidStringLength, isPalindrome, getNumberFromString, canScheduleMeeting };
