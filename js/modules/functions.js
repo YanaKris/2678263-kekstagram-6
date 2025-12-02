@@ -1,3 +1,5 @@
+import {toMinutes} from './util.js';
+
 const isValidStringLength = (string, maxLength) => string.length <= maxLength;
 
 const isPalindrome = (str) => {
@@ -21,4 +23,17 @@ const getNumberFromString = (str) => {
   return accumulatorNumber === '' ? NaN : Number(accumulatorNumber);
 };
 
-export { isValidStringLength, isPalindrome, getNumberFromString };
+const canScheduleMeeting = ( dayStart , dayEnd, startTime, durationMinutes) => {
+  const totalMinutesStartMeeting = toMinutes(startTime);
+  const totalMinutesEndMeeting = toMinutes(startTime) + durationMinutes;
+
+  const totalMinutesStartDay = toMinutes(dayStart);
+  const totalMinutesEndDay = toMinutes(dayEnd);
+
+  return (
+    totalMinutesStartMeeting >= totalMinutesStartDay &&
+    totalMinutesEndMeeting <= totalMinutesEndDay
+  );
+};
+
+export { isValidStringLength, isPalindrome, getNumberFromString, canScheduleMeeting };
